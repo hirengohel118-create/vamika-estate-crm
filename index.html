@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Vamika Estate CRM</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="header">
+    <h1>Vamika Estate</h1>
+    <p>Projects Module (Clean Start)</p>
+  </header>
+
+  <main class="container">
+    <div class="top-row">
+      <h2>Projects</h2>
+      <button id="addProjectBtn">+ New Project</button>
+    </div>
+
+    <div id="projectsList"></div>
+  </main>
+
+  <!-- Project Modal -->
+  <div id="projectModal" class="modal hidden">
+    <div class="modal-card">
+      <h3 id="modalTitle">Add Project</h3>
+
+      <input id="projectName" placeholder="Project name" />
+      <input id="projectLocation" placeholder="Location" />
+      <textarea id="projectConfig" placeholder="Configuration / Details"></textarea>
+
+      <div class="modal-actions">
+        <button id="cancelProject">Cancel</button>
+        <button id="saveProject">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
