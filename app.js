@@ -789,5 +789,72 @@ document.getElementById("installBtn").onclick = async () => {
 // ---------------------------------------------
 // FIRST LOAD TRIGGERS
 // ---------------------------------------------
+// ================================
+// THEME SYSTEM – PRESETS + CUSTOM
+// ================================
+
+// Load saved theme if exists
+const savedTheme = localStorage.getItem("ve_theme");
+if (savedTheme) {
+  document.documentElement.style.setProperty("--primary", savedTheme);
+}
+
+// Function to apply + save
+function setTheme(color) {
+  document.documentElement.style.setProperty("--primary", color);
+  localStorage.setItem("ve_theme", color);
+}
+
+// Auto-inject Preset Colors + Picker into Settings tab
+function injectThemeControls() {
+  const parent = document.getElementById("tab-settings");
+  if (!parent) return;
+
+  // Title
+  const title = document.createElement("div");
+  title.style.marginTop = "14px";
+  title.style.fontWeight = "700";
+  title.textContent = "Theme Presets";
+  parent.appendChild(title);
+
+  // Preset Row
+  const row = document.createElement("div");
+  row.className = "palette-row";
+  parent.appendChild(row);
+
+  const presets = [
+    "#3b82f6", // blue
+    "#22c55e", // green
+    "#ef4444", // red
+    "#f59e0b", // gold
+    "#a855f7"  // purple
+  ];
+
+  presets.forEach(c => {
+    const btn = document.createElement("button");
+    btn.className = "color-btn";
+    btn.style.background = c;
+    btn.onclick = () => setTheme(c);
+    row.appendChild(btn);
+  });
+
+  // Custom picker title
+  const ct = document.createElement("div");
+  ct.style.marginTop = "14px";
+  ct.style.fontWeight = "700";
+  ct.textContent = "Custom Color";
+  parent.appendChild(ct);
+
+  // Custom HEX picker
+  const input = document.createElement("input");
+  input.type = "color";
+  input.id = "customColor";
+  input.value = savedTheme || "#3b82f6";
+  input.oninput = e => setTheme(e.target.value);
+  parent.appendChild(input);
+}
+
+// Run this after DOM sections exist
+injectThemeControls();
 renderLeads();
 renderProjects();
