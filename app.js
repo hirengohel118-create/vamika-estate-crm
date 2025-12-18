@@ -526,7 +526,7 @@ function openProjectForm(pid=null) {
   let P = pid ? state.projects.find(x => x.id === pid) : newProjectObject();
 
   projectModal.innerHTML = `
-    <div class="modal-panel">
+    <button class="modal-close" onclick="closeProjectModal()">✕</button>
 
       <div style="font-size:16px;font-weight:700;margin-bottom:8px;">
         ${pid ? "Edit Project" : "Add Project"}
