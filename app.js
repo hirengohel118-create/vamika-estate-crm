@@ -108,7 +108,8 @@
     if(!projects.length) $('projectsEmpty').style.display='block'; else $('projectsEmpty').style.display='none';
     projects.forEach((p, idx) => {
       const c = document.createElement('div'); c.className='lead-card';
-      c.innerHTML = `<div class="lead-row"><div class="lead-left"><div class="lead-title">${p.name}</div><div class="lead-meta">${p.config} • ${p.location || ''}</div></div><div class="card-actions"><button class="small-btn delete">Delete</button></div></div>`;
+      c.innerHTML = `<div class="lead-row"><div class="lead-left"><div class="lead-title">${p.name}</div><div class="lead-meta">${p.config} • ${p.location || ''}</div></div><div class="card-actions"><button class="small-btn edit">Edit</button>
+<button class="small-btn delete">Delete</button></div></div>`;
       list.appendChild(c);
     });
     $('totalProjects') && ($('totalProjects').innerText = projects.length);
