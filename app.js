@@ -108,9 +108,21 @@
     if(!projects.length) $('projectsEmpty').style.display='block'; else $('projectsEmpty').style.display='none';
     projects.forEach((p, idx) => {
       const c = document.createElement('div'); c.className='lead-card';
-      c.innerHTML = `<div class="lead-row"><div class="lead-left"><div class="lead-title">${p.name}</div><div class="lead-meta">${p.config} • ${p.location || ''}</div></div><div class="card-actions"><button class="small-btn edit">Edit</button>
-<button class="small-btn delete">Delete</button></div></div>`;
-      list.appendChild(c);
+      c.innerHTML = const editBtn = c.querySelector('.edit');
+editBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  alert('Edit button clicked'); // test mate
+});
+
+const delBtn = c.querySelector('.delete');
+delBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  if(confirm('Delete this project?')){
+    projects.splice(idx,1);
+    localStorage.setItem('projects', JSON.stringify(projects));
+    renderProjects();
+  }
+});
     });
     $('totalProjects') && ($('totalProjects').innerText = projects.length);
   }
